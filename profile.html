@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="logo">Название магазина</div>
+        <div class="header-links">
+            <a href="index.html" class="header-icon"><i class="fas fa-home"></i></a>
+            <a href="cart.html" class="header-icon"><i class="fas fa-shopping-cart"></i></a>
+        </div>
+    </header>
+
+    <div class="notification-area">
+        <!-- Тут будут всплывающие уведомления -->
+    </div>
+
+    <main class="profile-page">
+        <section class="order-list">
+            <h2>Заказы</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>№</th>
+                            <th>Дата и время</th>
+                            <th>Состав</th>
+                            <th>Итоговая стоимость</th>
+                            <th>Доставка</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Строки заказов будут генерироваться здесь -->
+                        <tr>
+                            <td>1</td>
+                            <td>2024-05-20 10:30</td>
+                            <td>Товар 1, Товар 2, Товар 3</td>
+                            <td>$150</td>
+                            <td>2024-05-21, Утро</td>
+                            <td>
+                                <button class="view-order" data-order-id="1"><i class="fas fa-eye"></i></button>
+                                <button class="edit-order" data-order-id="1"><i class="fas fa-edit"></i></button>
+                                <button class="delete-order" data-order-id="1"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2024-05-22 14:00</td>
+                            <td>Товар 4, Товар 5</td>
+                            <td>$80</td>
+                            <td>2024-05-23, День</td>
+                            <td>
+                                <button class="view-order" data-order-id="2"><i class="fas fa-eye"></i></button>
+                                <button class="edit-order" data-order-id="2"><i class="fas fa-edit"></i></button>
+                                <button class="delete-order" data-order-id="2"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальные окна -->
+    <div id="modal-view" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Просмотр заказа</h3>
+            <div class="modal-body">
+                <!-- Информация о заказе -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-edit" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Редактирование заказа</h3>
+            <div class="modal-body">
+                <!-- Форма для редактирования заказа -->
+            </div>
+        </div>
+    </div>
+    <div id="modal-delete" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Удаление заказа</h3>
+            <div class="modal-body">
+                <p>Вы действительно хотите удалить заказ?</p>
+                <button class="confirm-delete">Удалить</button>
+                <button class="cancel-delete">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Название компании</p>
+        <p>Контактные данные</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
