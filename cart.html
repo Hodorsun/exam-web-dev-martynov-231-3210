@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <div class="logo">Название магазина</div>
+        <div class="logo">Интернет каталог</div>
         <div class="header-links">
             <a href="index.html" class="header-icon"><i class="fas fa-home"></i></a>
             <a href="profile.html" class="header-icon"><i class="fas fa-user"></i></a>
@@ -54,26 +54,28 @@
                     <label for="phone">Телефон:</label>
                     <input type="text" id="phone" required>
                 </div>
-                 <div class="form-group">
-                     <label>
-                         <input type="checkbox" name="subscribe">
-                         Согласие на получение рассылки
+                <div class="form-group">
+                    <label>
+                        Согласие на получение рассылки
+                        <input type="checkbox" name="subscribe" id="check">
                     </label>
+                    
                 </div>
-                 <div class="form-group">
-                     <label for="address">Адрес доставки:</label>
+                <div class="form-group">
+                    <label for="address">Адрес доставки:</label>
                     <input type="text" id="address" required>
-                 </div>
-                  <div class="form-group">
-                      <label for="delivery-date">Дата доставки:</label>
+                </div>
+                <div class="form-group">
+                    <label for="delivery-date">Дата доставки:</label>
                     <input type="date" id="delivery-date" required>
-                  </div>
+                </div>
                 <div class="form-group">
                     <label for="delivery-time">Временной интервал доставки:</label>
                     <select id="delivery-time">
-                        <option value="morning">Утро (9:00 - 12:00)</option>
-                        <option value="afternoon">День (12:00 - 16:00)</option>
-                        <option value="evening">Вечер (16:00 - 20:00)</option>
+                        <option value="morning">Утро (8:00 - 12:00)</option>
+                        <option value="afternoon">День (12:00 - 14:00)</option>
+                        <option value="afterafternoon">Полдник (14:00 - 18:00)</option>
+                        <option value="evening">Вечер (18:00 - 22:00)</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -84,18 +86,18 @@
                     <button type="reset">Сбросить</button>
                     <button type="submit">Оформить заказ</button>
                 </div>
-                 <div class="total-cost-container">
+                <div class="total-cost-container">
                     <span class="total-cost"></span>
                     <span class="delivery-cost"></span>
-                 </div>
+                </div>
             </form>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Название компании</p>
-        <p>Контактные данные</p>
+        <p>&copy; 2025 Интернет каталог</p>
     </footer>
-     <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
+

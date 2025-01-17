@@ -95,8 +95,8 @@ function addToCart(productId) {
 async function init() {
     if (productGrid) {
         const products = await fetchProducts();
-         renderProducts(products);
-         await populateCategories();
+        renderProducts(products);
+        await populateCategories();
         //  applyFiltersAndSort();
     }
 }
@@ -248,12 +248,15 @@ async function handleOrderSubmit(event) {
     } catch (error) {
         showNotification(`Ошибка сети: ${error.message}`, 'error');
     }
+
+    window.location.href = 'index.html';
 }
 
 function convertDeliveryTime(deliveryTime) {
     switch (deliveryTime) {
         case 'morning': return '08:00-12:00';
         case 'afternoon': return '12:00-14:00';
+        case 'afterafternoon': return '14:00-18:00';
         case 'evening': return '18:00-22:00';
         default: return '';
     }
@@ -300,7 +303,7 @@ async function updateTotalCost() {
     const deliveryCost = getDeliveryCost();
     const total = totalCost + deliveryCost;
     if (totalCostElement) {
-        totalCostElement.textContent = `${total}  \u20BD`;
+        totalCostElement.textContent = `Итоговая стоимость: ${total}  \u20BD`;
     }
     if (deliveryCostElement) {
         deliveryCostElement.textContent = `Стоимость доставки: ${deliveryCost} \u20BD`;
@@ -532,9 +535,10 @@ async function renderEditOrderModalContent(order) {
             <div class="form-group">
                 <label for="edit-delivery-time">Временной интервал доставки:</label>
                 <select id="edit-delivery-time">
-                  <option value="morning" ${deliveryTime === 'morning' ? 'selected' : ''}>Утро (9:00 - 12:00)</option>
-                  <option value="afternoon" ${deliveryTime === 'afternoon' ? 'selected' : ''}>День (12:00 - 16:00)</option>
-                  <option value="evening" ${deliveryTime === 'evening' ? 'selected' : ''}>Вечер (16:00 - 20:00)</option>
+                  <option value="morning" ${deliveryTime === 'morning' ? 'selected' : ''}>Утро (8:00 - 12:00)</option>
+                  <option value="afternoon" ${deliveryTime === 'afternoon' ? 'selected' : ''}>День (12:00 - 14:00)</option>
+                  <option value="afterafternoon" ${deliveryTime === 'afterafternoon' ? 'selected' : ''}>Полдник (14:00 - 18:00)</option>
+                  <option value="evening" ${deliveryTime === 'evening' ? 'selected' : ''}>Вечер (18:00 - 22:00)</option>
                 </select>
             </div>
             <div class="form-group">
@@ -630,6 +634,7 @@ function convertDeliveryInterval(deliveryInterval) {
     switch (deliveryInterval) {
         case '08:00-12:00': return 'morning';
         case '12:00-14:00': return 'afternoon';
+        case '14:00-18:00': return 'afterafternoon';
         case '18:00-22:00': return 'evening';
         default: return '';
     }
@@ -659,60 +664,60 @@ if (filterForm) {
 }
 
 async function handleFilterSubmit(event) {
-  event.preventDefault();
+    event.preventDefault();
     const formData = new FormData(filterForm);
     const params = {};
 
-   const selectedCategories = formData.getAll('category');
-     if (selectedCategories.length > 0) {
-       params.category = selectedCategories;
-   }
+    const selectedCategories = formData.getAll('category');
+    if (selectedCategories.length > 0) {
+        params.category = selectedCategories;
+    }
 
     const priceMin = formData.get('price_min');
-   if (priceMin) {
-      params.price_min = priceMin;
-   }
+    if (priceMin) {
+        params.price_min = priceMin;
+    }
     const priceMax = formData.get('price_max');
     if (priceMax) {
-         params.price_max = priceMax;
+        params.price_max = priceMax;
     }
 
     const discounted = formData.get('discounted');
-   if (discounted) {
-     params.discounted = true;
-   }
+    if (discounted) {
+        params.discounted = true;
+    }
 
     currentFilterParams = params;
 
-  applyFiltersAndSort();
+    applyFiltersAndSort();
 }
 
 async function fetchFilteredProducts(filterParams = {}) {
-  let products = await fetchProducts();
-  if (products && products.length > 0) {
+    let products = await fetchProducts();
+    if (products && products.length > 0) {
 
-      if(filterParams.category){
-         products = products.filter(product => filterParams.category.includes(product.main_category));
-      }
+        if (filterParams.category) {
+            products = products.filter(product => filterParams.category.includes(product.main_category));
+        }
 
-        if(filterParams.price_min){
+        if (filterParams.price_min) {
             products = products.filter(product => {
                 const price = product.discount_price ? product.discount_price : product.actual_price;
                 return price >= parseFloat(filterParams.price_min);
             });
         }
-       if(filterParams.price_max){
+        if (filterParams.price_max) {
             products = products.filter(product => {
                 const price = product.discount_price ? product.discount_price : product.actual_price;
                 return price <= parseFloat(filterParams.price_max);
             });
         }
 
-       if(filterParams.discounted){
+        if (filterParams.discounted) {
             products = products.filter(product => product.discount_price);
         }
     }
-   return products;
+    return products;
 }
 
 if (searchInput) {
@@ -720,17 +725,17 @@ if (searchInput) {
 }
 
 async function handleSearch(event) {
-  const query = event.target.value.trim();
+    const query = event.target.value.trim();
     if (query) {
         const params = {
-          query: query
+            query: query
         };
-       const searchedProducts = await fetchProducts(params);
-       renderProducts(searchedProducts);
+        const searchedProducts = await fetchProducts(params);
+        renderProducts(searchedProducts);
     }
-     else {
-      applyFiltersAndSort();
-     }
+    else {
+        applyFiltersAndSort();
+    }
 }
 
 if (sortSelect) {
@@ -743,40 +748,42 @@ async function handleSortChange(event) {
 }
 
 async function fetchAndSortProducts(sortValue, products) {
-  if (products && products.length > 0) {
-    switch (sortValue) {
-        case 'popularity':
-          // в API нет параметра сортировки по популярности, поэтому сортировка не будет происходить
-             break;
-       case 'price_asc':
-            products.sort((a, b) => {
-                const priceA = a.discount_price ? a.discount_price : a.actual_price;
-                const priceB = b.discount_price ? b.discount_price : b.actual_price;
-                return priceA - priceB;
-            });
-            break;
-        case 'price_desc':
-            products.sort((a, b) => {
-                const priceA = a.discount_price ? a.discount_price : a.actual_price;
-                const priceB = b.discount_price ? b.discount_price : b.actual_price;
-                return priceB - priceA;
-             });
-           break;
-        case 'rating':
-            products.sort((a, b) => b.rating - a.rating);
-            break;
-       default:
+    if (products && products.length > 0) {
+        switch (sortValue) {
+            case 'popularity':
+                // в API нет параметра сортировки по популярности, поэтому сортировка не будет происходить
+                break;
+            case 'price_asc':
+                products.sort((a, b) => {
+                    const priceA = a.discount_price ? a.discount_price : a.actual_price;
+                    const priceB = b.discount_price ? b.discount_price : b.actual_price;
+                    return priceA - priceB;
+                });
+                break;
+            case 'price_desc':
+                products.sort((a, b) => {
+                    const priceA = a.discount_price ? a.discount_price : a.actual_price;
+                    const priceB = b.discount_price ? b.discount_price : b.actual_price;
+                    return priceB - priceA;
+                });
+                break;
+            case 'rating':
+                products.sort((a, b) => b.rating - a.rating);
+                break;
+            default:
                 break;
         }
     }
     return products;
 }
 
-async function applyFiltersAndSort(){
-  let filteredProducts = await fetchFilteredProducts(currentFilterParams);
-  const sortedProducts = await fetchAndSortProducts(currentSortValue, filteredProducts);
-  renderProducts(sortedProducts);
+async function applyFiltersAndSort() {
+    let filteredProducts = await fetchFilteredProducts(currentFilterParams);
+    const sortedProducts = await fetchAndSortProducts(currentSortValue, filteredProducts);
+    renderProducts(sortedProducts);
 }
 if (document.querySelector('.profile-page')) {
     document.addEventListener('DOMContentLoaded', renderOrders);
 }
+
+
