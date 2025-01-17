@@ -49,10 +49,12 @@ header {
     .notification-area.active {
         display: block;
     }
+
     .notification-area.success {
         background-color: #4CAF50;
         color: white;
     }
+
     .notification-area.error {
         background-color: #dc3545;
         color: white;
@@ -98,13 +100,13 @@ aside.sidebar {
     transition: background-color 0.3s ease;
 }
 
-.sidebar form button:hover {
-    background-color: #367c39;
-}
+    .sidebar form button:hover {
+        background-color: #367c39;
+    }
 
-.sidebar form button:active {
-    background-color: #265729;
-}
+    .sidebar form button:active {
+        background-color: #265729;
+    }
 
 .cart-content {
     width: 100%;
@@ -118,7 +120,7 @@ aside.sidebar {
     gap: 20px;
 }
 
- .cart-items .product-card {
+    .cart-items .product-card {
         padding: 10px;
         text-align: center;
         display: flex;
@@ -128,50 +130,50 @@ aside.sidebar {
         max-height: 400px;
         width: 100%;
         aspect-ratio: 3/4;
-       overflow: hidden;
-         box-sizing: border-box;
-           justify-content: space-between;
+        overflow: hidden;
+        box-sizing: border-box;
+        justify-content: space-between;
     }
 
 
         .cart-items .product-card img {
             width: 100%;
             max-height: 50%;
-             object-fit: contain;
-             flex-shrink: 0;
+            object-fit: contain;
+            flex-shrink: 0;
         }
 
         .cart-items .product-card h3 {
             font-size: 1em;
             margin: 5px 0;
-           box-sizing: border-box;
-           padding: 0 5px;
-           min-height: 2.2em;
-              display: flex;
-              align-items: center;
-               flex-grow: 1;
+            box-sizing: border-box;
+            padding: 0 5px;
+            min-height: 2.2em;
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
         }
 
         .cart-items .product-card .rating {
             color: gold;
             margin-bottom: 5px;
-             white-space: nowrap;
+            white-space: nowrap;
             flex-shrink: 0;
-             padding: 0 5px;
+            padding: 0 5px;
         }
 
         .cart-items .product-card .price {
             font-size: 1em;
             margin-bottom: 5px;
-             flex-shrink: 0;
-             padding: 0 5px;
+            flex-shrink: 0;
+            padding: 0 5px;
         }
 
         .cart-items .product-card .price-old {
             text-decoration: line-through;
             color: #888;
             margin-right: 5px;
-             flex-shrink: 0;
+            flex-shrink: 0;
         }
 
         .cart-items .product-card button.remove-from-cart {
@@ -181,17 +183,19 @@ aside.sidebar {
             border: none;
             cursor: pointer;
             border-radius: 4px;
-           transition: background-color 0.3s ease;
-              flex-shrink: 0;
-             white-space: nowrap;
+            transition: background-color 0.3s ease;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
-    .cart-items .product-card button.remove-from-cart:hover {
-          background-color: #b32d3c;
-    }
-    .cart-items .product-card button.remove-from-cart:active {
-          background-color: #942430;
-    }
+            .cart-items .product-card button.remove-from-cart:hover {
+                background-color: #b32d3c;
+            }
+
+            .cart-items .product-card button.remove-from-cart:active {
+                background-color: #942430;
+            }
+
 .empty-cart-message {
     text-align: center;
     font-size: 1.2em;
@@ -235,6 +239,11 @@ aside.sidebar {
         box-sizing: border-box;
     }
 
+    #check {
+        width: 20px;
+        height: 15px;
+    }
+
 .order-form button {
     padding: 10px 20px;
     background-color: #28a745;
@@ -242,14 +251,16 @@ aside.sidebar {
     border: none;
     cursor: pointer;
     border-radius: 4px;
-      transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
-.order-form button:hover {
-     background-color: #218838;
-}
-.order-form button:active {
-   background-color: #196a2b;
-}
+
+    .order-form button:hover {
+        background-color: #218838;
+    }
+
+    .order-form button:active {
+        background-color: #196a2b;
+    }
 
     .order-form button[type="reset"] {
         background-color: #6c757d;
@@ -259,6 +270,7 @@ aside.sidebar {
         .order-form button[type="reset"]:hover {
             background-color: #5a6268;
         }
+
         .order-form button[type="reset"]:active {
             background-color: #4d545a;
         }
@@ -285,18 +297,18 @@ aside.sidebar {
 }
 
 .product-card {
-        padding: 10px;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 300px;
-        max-height: 400px;
-        width: 100%;
-        aspect-ratio: 3/4;
-       overflow: hidden;
-        box-sizing: border-box;
-           justify-content: space-between;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    max-height: 400px;
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    box-sizing: border-box;
+    justify-content: space-between;
 }
 
 
@@ -310,12 +322,12 @@ aside.sidebar {
     .product-card h3 {
         font-size: 1em;
         margin: 5px 0;
-           box-sizing: border-box;
-          padding: 0 5px;
-         min-height: 2.2em;
-           display: flex;
-            align-items: center;
-            flex-grow: 1;
+        box-sizing: border-box;
+        padding: 0 5px;
+        min-height: 2.2em;
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
     }
 
     .product-card .rating {
@@ -323,14 +335,14 @@ aside.sidebar {
         margin-bottom: 5px;
         white-space: nowrap;
         flex-shrink: 0;
-         padding: 0 5px;
+        padding: 0 5px;
     }
 
     .product-card .price {
         font-size: 1em;
         margin-bottom: 5px;
         flex-shrink: 0;
-         padding: 0 5px;
+        padding: 0 5px;
     }
 
     .product-card .price-old {
@@ -347,16 +359,18 @@ aside.sidebar {
         border: none;
         cursor: pointer;
         border-radius: 4px;
-       transition: background-color 0.3s ease;
-         flex-shrink: 0;
-         white-space: nowrap;
+        transition: background-color 0.3s ease;
+        flex-shrink: 0;
+        white-space: nowrap;
     }
-    .product-card button.add-to-cart:hover {
-        background-color: #0056b3;
-    }
-    .product-card button.add-to-cart:active {
-        background-color: #003d82;
-    }
+
+        .product-card button.add-to-cart:hover {
+            background-color: #0056b3;
+        }
+
+        .product-card button.add-to-cart:active {
+            background-color: #003d82;
+        }
 
 
 .load-more {
@@ -410,13 +424,15 @@ footer {
     cursor: pointer;
     font-size: 18px;
     margin: 0 2px;
-       transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
- .order-list button:hover {
+
+    .order-list button:hover {
         background-color: rgba(0,0,0,0.1)
     }
+
     .order-list button:active {
-       background-color: rgba(0,0,0,0.2)
+        background-color: rgba(0,0,0,0.2)
     }
 
     .order-list button i {
@@ -444,7 +460,7 @@ footer {
     width: 60%;
     position: relative;
     border-radius: 8px;
-     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .modal-body {
@@ -459,7 +475,7 @@ footer {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-   transition: color 0.3s ease;
+    transition: color 0.3s ease;
 }
 
     .close-button:hover,
@@ -486,57 +502,164 @@ footer {
     display: block;
     margin-top: 5px;
 }
+
 #modal-delete .modal-body {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-#modal-delete .modal-body button {
-     padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-    margin: 5px;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-#modal-delete .modal-body .confirm-delete {
-    background-color: #dc3545;
-    color: white;
-}
-  #modal-delete .modal-body .confirm-delete:hover {
-        background-color: #b32d3c;
-    }
-     #modal-delete .modal-body .confirm-delete:active {
-        background-color: #942430;
+
+    #modal-delete .modal-body button {
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 4px;
+        margin: 5px;
+        border: none;
+        transition: background-color 0.3s ease;
     }
 
-#modal-delete .modal-body .cancel-delete {
-    background-color: #6c757d;
-     color: white;
-}
-#modal-delete .modal-body .cancel-delete:hover {
-      background-color: #5a6268;
-}
-#modal-delete .modal-body .cancel-delete:active {
-     background-color: #4d545a;
-}
+    #modal-delete .modal-body .confirm-delete {
+        background-color: #dc3545;
+        color: white;
+    }
+
+        #modal-delete .modal-body .confirm-delete:hover {
+            background-color: #b32d3c;
+        }
+
+        #modal-delete .modal-body .confirm-delete:active {
+            background-color: #942430;
+        }
+
+    #modal-delete .modal-body .cancel-delete {
+        background-color: #6c757d;
+        color: white;
+    }
+
+        #modal-delete .modal-body .cancel-delete:hover {
+            background-color: #5a6268;
+        }
+
+        #modal-delete .modal-body .cancel-delete:active {
+            background-color: #4d545a;
+        }
 
 #modal-edit .edit-order-form button[type="submit"] {
     background-color: #28a745;
-     color: white;
+    color: white;
     display: block;
-   margin: 20px auto 0;
-        padding: 10px 20px;
+    margin: 20px auto 0;
+    padding: 10px 20px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
-      transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
- #modal-edit .edit-order-form button[type="submit"]:hover {
-    background-color: #218838;
-}
+    #modal-edit .edit-order-form button[type="submit"]:hover {
+        background-color: #218838;
+    }
 
-#modal-edit .edit-order-form button[type="submit"]:active {
-    background-color: #196a2b;
+    #modal-edit .edit-order-form button[type="submit"]:active {
+        background-color: #196a2b;
+    }
+
+/* Медиазапрос для экранов смартфонов */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .header-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    main {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    aside.sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    .sidebar form input[type="number"] {
+        width: 90%;
+    }
+
+
+    .cart-content,
+    .order-form,
+    .product-catalog {
+        padding: 0 10px;
+    }
+
+    .cart-items,
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+        .product-card,
+        .cart-items .product-card {
+            max-width: 100%;
+            max-height: 420px;
+            aspect-ratio: 1/1.2;
+            min-height: 420px;
+        }
+
+            .product-card img,
+            .cart-items .product-card img {
+                max-height: 50%;
+            }
+
+            .product-card h3,
+            .cart-items .product-card h3 {
+                font-size: 0.7em;
+                min-height: 1.5em;
+            }
+
+            .product-card button.add-to-cart,
+            .cart-items .product-card button.remove-from-cart {
+                font-size: 0.8em;
+                padding: 5px 10px;
+            }
+
+            .product-card .rating,
+            .cart-items .product-card .rating {
+                margin-bottom: 3px;
+            }
+
+            .product-card .price,
+            .cart-items .product-card .price {
+                margin-bottom: 3px;
+            }
+
+
+    .order-form form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-buttons {
+        justify-content: center;
+    }
+
+    .table-container {
+        padding: 0 5px;
+    }
+
+    .order-list th,
+    .order-list td {
+        padding: 5px;
+        font-size: 0.9em;
+    }
 }
