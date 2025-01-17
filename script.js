@@ -1,69 +1,65 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const viewButtons = document.querySelectorAll('.view-order');
-    const editButtons = document.querySelectorAll('.edit-order');
-    const deleteButtons = document.querySelectorAll('.delete-order');
-    const modalView = document.getElementById('modal-view');
-    const modalEdit = document.getElementById('modal-edit');
-    const modalDelete = document.getElementById('modal-delete');
-    const closeButtons = document.querySelectorAll('.close-button');
-    const confirmDeleteBtn = document.querySelector('.confirm-delete');
-    const cancelDeleteBtn = document.querySelector('.cancel-delete');
-    let currentOrderId;
+const API_KEY = "b682a762-eac5-4135-8703-7d7241a6d234";
+const API_BASE_URL = "https://edu.std-900.ist.mospolytech.ru/exam-2024-1/api";
 
-    viewButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            currentOrderId = this.getAttribute('data-order-id');
-            modalView.style.display = 'block';
-            const modalBody = modalView.querySelector('.modal-body');
-            modalBody.innerHTML = `<p>Информация о заказе №${currentOrderId}: </p><p>Описание заказа: ... </p>`;
-        });
-    });
-    editButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            currentOrderId = this.getAttribute('data-order-id');
-            modalEdit.style.display = 'block';
-            const modalBody = modalEdit.querySelector('.modal-body');
-            modalBody.innerHTML = `<form><div class="form-group">
-          <label for="new-date">Новая дата доставки</label>
-          <input type="date" id="new-date">
-          </div><div class="form-group"><label for="new-time">Новое время доставки</label>
-            <select id="new-time">
-            <option value="morning">Утро (9:00 - 12:00)</option>
-                <option value="afternoon">День (12:00 - 16:00)</option>
-              <option value="evening">Вечер (16:00 - 20:00)</option>
-              </select></div>
-               <button type="submit">Сохранить</button>
-          </form>`;
-        });
-    });
+const productGrid = document.querySelector('.product-grid');
+const notificationArea = document.querySelector('.notification-area');
 
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            currentOrderId = this.getAttribute('data-order-id');
-            modalDelete.style.display = 'block';
-        });
-    });
 
-    closeButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            modalView.style.display = 'none';
-            modalEdit.style.display = 'none';
-            modalDelete.style.display = 'none';
-        });
-    });
+function showNotification(message, type = 'success') {
+    notificationArea.textContent = message;
+    notificationArea.classList.add('active', type);
+    setTimeout(() => {
+        notificationArea.classList.remove('active', type);
+    }, 3000);
+}
 
-    window.onclick = function (event) {
-        if (event.target === modalView || event.target === modalEdit || event.target === modalDelete) {
-            modalView.style.display = "none";
-            modalEdit.style.display = "none";
-            modalDelete.style.display = "none";
-        }
-    };
-    confirmDeleteBtn.addEventListener('click', function () {
-        alert(`Заказ ${currentOrderId} удален`);
-        modalDelete.style.display = 'none';
+async function fetchProducts(params = {}) {
+  const urlParams = new URLSearchParams({ api_key: API_KEY, ...params });
+  const url = `${API_BASE_URL}/goods?${urlParams}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      const errorData = await response.json();
+      if (errorData && errorData.error) {
+           showNotification(`Ошибка загрузки товаров: ${errorData.error}`, 'error');
+      } else {
+        showNotification(`Ошибка загрузки товаров, статус: ${response.status}`, 'error');
+      }
+       return [];
+    }
+     return await response.json();
+  }
+  catch (error) {
+    showNotification(`Ошибка сети: ${error.message}`, 'error');
+    return [];
+  }
+}
+
+function renderProducts(products) {
+    productGrid.innerHTML = ''; // Очищаем предыдущие результаты
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+
+        const discountPrice = product.discount_price ? `<span class="price-old">${product.actual_price}</span>${product.discount_price}` : `${product.actual_price}`;
+
+        productCard.innerHTML = `
+            <img src="${product.image_url}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <div class="rating">${'★'.repeat(Math.round(product.rating))}</div>
+            <div class="price">${discountPrice}</div>
+            <button class="add-to-cart" data-product-id="${product.id}">Добавить в корзину</button>
+        `;
+
+        productGrid.appendChild(productCard);
     });
-    cancelDeleteBtn.addEventListener('click', function () {
-        modalDelete.style.display = 'none';
-    })
-});
+}
+
+async function init() {
+  const products = await fetchProducts();
+  renderProducts(products);
+}
+
+// Загрузка товаров при загрузке страницы
+document.addEventListener('DOMContentLoaded', init);
