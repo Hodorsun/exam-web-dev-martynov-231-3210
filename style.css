@@ -3,7 +3,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Занимаем всю высоту viewport */
+    min-height: 100vh;
 }
 
 header {
@@ -37,7 +37,7 @@ header {
 }
 
 .notification-area {
-    background-color: #ffd700; /* желтый цвет для уведомлений */
+    background-color: #ffd700;
     padding: 10px;
     text-align: center;
     display: none;
@@ -46,10 +46,18 @@ header {
     .notification-area.active {
         display: block;
     }
+    .notification-area.success {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .notification-area.error {
+        background-color: #dc3545;
+        color: white;
+    }
 
 main {
     display: flex;
-    flex: 1; /* Занимает все доступное пространство */
+    flex: 1;
     padding: 20px;
 }
 
@@ -84,6 +92,15 @@ aside.sidebar {
     color: white;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar form button:hover {
+    background-color: #367c39;
+}
+
+.sidebar form button:active {
+    background-color: #265729;
 }
 
 .cart-content {
@@ -102,6 +119,9 @@ aside.sidebar {
         border: 1px solid #ddd;
         padding: 10px;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
         .cart-items .product-card img {
@@ -138,8 +158,15 @@ aside.sidebar {
             border: none;
             cursor: pointer;
             border-radius: 4px;
+           transition: background-color 0.3s ease;
         }
 
+    .cart-items .product-card button.remove-from-cart:hover {
+          background-color: #b32d3c;
+    }
+    .cart-items .product-card button.remove-from-cart:active {
+          background-color: #942430;
+    }
 .empty-cart-message {
     text-align: center;
     font-size: 1.2em;
@@ -190,11 +217,26 @@ aside.sidebar {
     border: none;
     cursor: pointer;
     border-radius: 4px;
+      transition: background-color 0.3s ease;
+}
+.order-form button:hover {
+     background-color: #218838;
+}
+.order-form button:active {
+   background-color: #196a2b;
 }
 
     .order-form button[type="reset"] {
         background-color: #6c757d;
+        transition: background-color 0.3s ease;
     }
+
+        .order-form button[type="reset"]:hover {
+            background-color: #5a6268;
+        }
+        .order-form button[type="reset"]:active {
+            background-color: #4d545a;
+        }
 
 .product-catalog {
     flex: 1;
@@ -221,6 +263,9 @@ aside.sidebar {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
     .product-card img {
@@ -232,6 +277,7 @@ aside.sidebar {
     .product-card h3 {
         font-size: 1.2em;
         margin: 10px 0;
+         flex-grow: 1;
     }
 
     .product-card .rating {
@@ -257,7 +303,15 @@ aside.sidebar {
         border: none;
         cursor: pointer;
         border-radius: 4px;
+       transition: background-color 0.3s ease;
     }
+    .product-card button.add-to-cart:hover {
+        background-color: #0056b3;
+    }
+    .product-card button.add-to-cart:active {
+        background-color: #003d82;
+    }
+
 
 .load-more {
     padding: 10px 20px;
@@ -275,12 +329,12 @@ footer {
     background-color: #f0f0f0;
     padding: 20px;
     text-align: center;
-    margin-top: auto; /* Прижимает footer к низу */
+    margin-top: auto;
 }
 
 /* Стили для таблицы */
 .table-container {
-    overflow-x: auto; /* Добавляем горизонтальную прокрутку, если таблица не помещается */
+    overflow-x: auto;
     width: 100%;
 }
 
@@ -310,7 +364,14 @@ footer {
     cursor: pointer;
     font-size: 18px;
     margin: 0 2px;
+       transition: background-color 0.3s ease;
 }
+ .order-list button:hover {
+        background-color: rgba(0,0,0,0.1)
+    }
+    .order-list button:active {
+       background-color: rgba(0,0,0,0.2)
+    }
 
     .order-list button i {
         pointer-events: none;
@@ -318,24 +379,26 @@ footer {
 
 /* Стили для модальных окон */
 .modal {
-    display: none; /* По умолчанию скрыт */
-    position: fixed; /* Фиксированное положение */
-    z-index: 1; /* Сверху всего */
+    display: none;
+    position: fixed;
+    z-index: 1;
     left: 0;
     top: 0;
-    width: 100%; /* Полная ширина */
-    height: 100%; /* Полная высота */
-    overflow: auto; /* Включаем прокрутку при необходимости */
-    background-color: rgba(0,0,0,0.4); /* Полупрозрачный фон */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 10% auto; /* По центру */
+    margin: 10% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 60%;
     position: relative;
+    border-radius: 8px;
+     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .modal-body {
@@ -350,6 +413,7 @@ footer {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+   transition: color 0.3s ease;
 }
 
     .close-button:hover,
@@ -358,3 +422,21 @@ footer {
         text-decoration: none;
         cursor: pointer;
     }
+
+.total-cost-container {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.total-cost {
+    font-size: 1.5em;
+    font-weight: bold;
+    display: block;
+}
+
+.delivery-cost {
+    font-size: 1em;
+    color: #888;
+    display: block;
+    margin-top: 5px;
+}
